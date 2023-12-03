@@ -6,11 +6,12 @@ var from_name = document.getElementById("from_name");
 var from_email = document.getElementById("from_email");
 var message = document.getElementById("from_message");
 function sendEmail() {
+    document.getElementById("form_button").disabled = true;
     // Get form values
     // Define parameters
     var params = {
         from_name: from_name.value,
-        from_email: from_email.value,
+        email_id: from_email.value,
         message: message.value
     };
 
@@ -21,9 +22,11 @@ function sendEmail() {
             console.log("Email sent successfully:", response);
             clearForm()
             alert("Email sent successfully!");
+            document.getElementById("form_button").disabled = false;
         }, function(error) {
             console.log("Email failed to send:", error);
             alert("Email failed to send. Please try again later.");
+            document.getElementById("form_button").disabled = false;
         });
 }
 function clearForm(){
